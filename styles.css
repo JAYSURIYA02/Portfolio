@@ -31,10 +31,14 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--nav-height);
   font-size: 16px;
+  background: #0a0e1a;
+  background-color: #0a0e1a;
 }
 
 body {
   font-family: var(--font-sans);
+  background: #0a0e1a;
+  background-color: #0a0e1a;
   background: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.7;
@@ -55,20 +59,13 @@ a:hover { color: #66e5ff; }
 body::before {
   content: '';
   position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.04) 0%, transparent 50%),
-              radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.03) 0%, transparent 50%),
-              radial-gradient(circle at 50% 80%, rgba(0, 212, 255, 0.02) 0%, transparent 50%);
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 15% 40%, rgba(0, 212, 255, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 85% 15%, rgba(124, 58, 237, 0.04) 0%, transparent 40%);
+  background-color: transparent;
   z-index: -1;
-  animation: ambientShift 20s ease-in-out infinite alternate;
-}
-
-@keyframes ambientShift {
-  0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(-3%, 3%) scale(1.05); }
+  pointer-events: none;
 }
 
 /* ===== Section Fade-in ===== */
@@ -118,7 +115,7 @@ body::before {
   letter-spacing: -0.5px;
 }
 
-.nav-links { display: flex; gap: 8px; list-style: none; }
+.nav-links { display: flex; gap: 8px; list-style: none; padding: 0; margin: 0; }
 
 .nav-links a {
   color: var(--text-secondary);
