@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #080808;
+  --bg-secondary: #111111;
+  --accent: #b8ff35;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --border-subtle: rgba(255, 255, 255, 0.12);
+}
+
+html {
+  background-color: #080808;
+  color: #ffffff;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  scroll-behavior: auto;
+}
+
+body {
+  background-color: #080808;
+  color: #ffffff;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #080808;
+}
+::-webkit-scrollbar-thumb {
+  background: #242424;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #b8ff35;
+}
+
+/* Subtle film grain overlay */
+.film-grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Editorial hairlines and blueprint grid */
+.tech-grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* SplitType overflow mask for smooth reveal */
+.split-line-mask {
+  overflow: hidden;
+}
+
+/* Technology ticker animation */
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes ticker-scroll-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 28s linear infinite;
+}
+
+.ticker-track-reverse {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll-reverse 34s linear infinite;
+}
+
+.ticker-wrapper:hover .ticker-track,
+.ticker-wrapper:hover .ticker-track-reverse {
+  animation-play-state: paused;
+}
+
+/* Hide system cursor only when custom cursor is active on pointer devices */
+@media (hover: hover) and (pointer: fine) {
+  body.custom-cursor-active,
+  body.custom-cursor-active a,
+  body.custom-cursor-active button,
+  body.custom-cursor-active [role='button'] {
+    cursor: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track,
+  .ticker-track-reverse {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
